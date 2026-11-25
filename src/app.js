@@ -728,8 +728,6 @@ function rechazarSolicitudConMotivo(id, motivo) {
     return { exito: true, mensaje: "Solicitud " + id + " rechazada con motivo registrado." };
 }
 
-rechazarSolicitud = rechazarSolicitudConMotivo;
-
 manejarRechazarSolicitud = function(id) {
     solicitudEnRechazoId = id;
     const modal = document.getElementById("modalRechazo");
@@ -765,7 +763,7 @@ function inicializarModalRechazo() {
         solicitudEnRechazoId = null;
     });
     btnConfirmar.addEventListener("click", function() {
-        const res = rechazarSolicitud(solicitudEnRechazoId, input.value);
+        const res = rechazarSolicitudConMotivo(solicitudEnRechazoId, input.value);
         if (!res.exito) {
             err.textContent = res.mensaje;
             err.style.display = "block";
